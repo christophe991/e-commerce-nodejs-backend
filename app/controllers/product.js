@@ -12,7 +12,7 @@ module.exports.readProduct = (req, res) =>{
 module.exports.addProduct = async (req, res) =>{
     console.log(req.body)
     const newProduct = new Product({
-        constructor: req.body.constructor,
+        brand: req.body.brand,
         type: req.body.type,
         model: req.body.model,
         description: req.body.description,
@@ -20,15 +20,15 @@ module.exports.addProduct = async (req, res) =>{
         reference: req.body.reference,
     });
     console.log(newProduct)
-   /*  try{
+    try{
         const product = await newProduct.save()
         return res.status(201).json(product)
     }catch(err){
         return res.status(400).send(err)
-    } */
-    newProduct.save(function(err, product) {
+    }
+    /* newProduct.save(function(err, product) {
         if (err)return res.status(400).send(err);
         return res.status(201).json(product)
-      });
+      }); */
 }
 
