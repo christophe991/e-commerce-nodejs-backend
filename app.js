@@ -1,4 +1,8 @@
 const express = require('express')
+const productRoute = require('./app/routes/productRoute')
+var bodyParser = require('body-parser');
+
+
 const serverConfig = require('./app/config/server.config')
 const mongoose = require('mongoose')
 mongoose.connect('mongodb+srv://chris:erim12team@expressmovies.6s06n.mongodb.net/gaming?retryWrites=true&w=majority', { useUnifiedTopology: true })
@@ -13,11 +17,23 @@ db.once('open', ()=>{
 
 const PORT = serverConfig.PORT || 5000
 const app = express()
+app.use(function (req, res, next) {
+
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  
+  });
+  
+  app.use(bodyParser.urlencoded({ extended: true }));
+  app.use(bodyParser.json());
 //Routes
 app.get('/api',(req,res) => res.status(200).send({message : 'test server'}))
-app.get('/api/product',(req,res) => res.status(200).send({
-    
-}))
+app.use('/api/product', productRoute)
+
+
+
+
 
 
 
