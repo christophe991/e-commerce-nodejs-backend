@@ -25,11 +25,11 @@ const PostShema =  mongoose.Schema(
             type: String,
             
         },
-        /* picture: {
+        picture: {
             type: String,
-            required: true
-        } */
+            
+        }
     }
 )
-module.exports = mongoose.model('Product', PostShema);
+module.exports = mongoose.model('Console', PostShema);
 

@@ -1,6 +1,9 @@
 const express = require('express')
-const productRoute = require('./app/routes/productRoute')
+const consoleRoute = require('./app/routes/consoleRoute')
 var bodyParser = require('body-parser');
+const userRoute = require('./app/routes/userRoute')
+const gameRoute = require('./app/routes/gameRoute')
+const accessoryRoute = require('./app/routes/accessoryRoute')
 
 
 const serverConfig = require('./app/config/server.config')
@@ -29,7 +32,10 @@ app.use(function (req, res, next) {
   app.use(bodyParser.json());
 //Routes
 app.get('/api',(req,res) => res.status(200).send({message : 'test server'}))
-app.use('/api/product', productRoute)
+app.use('/api/console', consoleRoute)
+app.use('/api/game', gameRoute)
+app.use('/api/user', userRoute)
+app.use('/api/accessory', accessoryRoute)
 
 
 

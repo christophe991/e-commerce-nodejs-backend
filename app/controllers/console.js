@@ -1,17 +1,17 @@
-const Product = require('../models/product');
-const ObjectID = require('mongoose').Types.ObjectId;//Verifie en base de donnée
+const Console = require('../models/console');
 
 
-module.exports.readProduct = (req, res) =>{
-    Product.find((err, docs) =>{
+
+module.exports.readConsole = (req, res) =>{
+    Console.find((err, docs) =>{
         if(!err) res.send(docs);
-        else console.log('Rien en base de donnée:' + err);
+        else console.log('Aucune console en base de donnée:' + err);
     })
 }
 
-module.exports.addProduct = async (req, res) =>{
+module.exports.addConsole = async (req, res) =>{
     console.log(req.body)
-    const newProduct = new Product({
+    const newConsole = new Console({
         brand: req.body.brand,
         type: req.body.type,
         model: req.body.model,
@@ -19,10 +19,10 @@ module.exports.addProduct = async (req, res) =>{
         price: req.body.price,
         reference: req.body.reference,
     });
-    console.log(newProduct)
+    console.log(newConsole)
     try{
-        const product = await newProduct.save()
-        return res.status(201).json(product)
+        const console = await newConsole.save()
+        return res.status(201).json(console)
     }catch(err){
         return res.status(400).send(err)
     }
